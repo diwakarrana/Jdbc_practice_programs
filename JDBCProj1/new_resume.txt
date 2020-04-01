@@ -1,0 +1,5 @@
+name:raja
+addrs:hyd
+qlfy: B.Tech
+steam :: CSE
+No.of years of experience : 0
