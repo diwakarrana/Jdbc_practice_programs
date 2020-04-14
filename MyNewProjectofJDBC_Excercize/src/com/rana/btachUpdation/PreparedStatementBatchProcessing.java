@@ -6,14 +6,14 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class PreparedStatementBatchProcessing {
-	private static final String QUERY = "INSERT INTO STUDENT1 VALUES (?, ?)";
+	private static final String INSERTQUERY = "INSERT INTO STUDENT1 VALUES (?, ?)";
 
 	public static void main(String[] args) {
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "c##rana", "rana123");
-		    PreparedStatement ps = con.prepareStatement(QUERY);
+		    PreparedStatement ps = con.prepareStatement(INSERTQUERY);
 		    ps.setString(1,  "Diwakar Rana");
 		    ps.setInt(2, 23);
 		    ps.addBatch();
