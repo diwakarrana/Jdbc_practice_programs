@@ -200,6 +200,7 @@ public class MiniProjectGUI_AllStatementsApp extends  JFrame  implements ActionL
 			//empty textboxes
 			tname.setText("");
 			tm1.setText("");
+			
 			tm2.setText("");
 			tm3.setText("");
 			tresult.setText("");
