@@ -1,11 +1,11 @@
-package com.nt.jdbc;
+package com.rana.callable_statement;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -21,8 +21,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class MiniProjectGUI_AllStatementsApp1 extends  JFrame  implements ActionListener {
-	private static final String GET_STUDENT_BY_SNO="SELECT SNO,SNAME,M1,M2,M3 FROM STUDENT WHERE SNO=?";
+public class MiniProjectGUI_AllStatementsApp extends  JFrame  implements ActionListener,WindowListener {
+	private static final String GET_STUDENT_BY_SNO="SELECT SNO,NAME,M1,M2,M3 FROM STUDENT WHERE SNO=?";
 	private static final String GET_ALL_SNOS="SELECT SNO FROM STUDENT";
 	private static final String CALL_PRO="{CALL P_FIND_PASS_FAIL(?,?,?,?)}"; 
 	  private JLabel lno,lname,lm1,lm2,lm3,lresult;
@@ -35,7 +35,7 @@ public class MiniProjectGUI_AllStatementsApp1 extends  JFrame  implements Action
 	  private CallableStatement cs;
 	  private ResultSet rs1,rs2;
 	
-	public MiniProjectGUI_AllStatementsApp1() {
+	public MiniProjectGUI_AllStatementsApp() {
 		System.out.println("MiniProjectGUI_AllStatementsApp:: 0-param constructor");
 		setTitle("MiniProject App");
 		setSize(300,300);
@@ -94,9 +94,9 @@ public class MiniProjectGUI_AllStatementsApp1 extends  JFrame  implements Action
 		tname.setEditable(false);
 		tresult.setEditable(false);
 		//add window Listener to frame
-		this.addWindowListener(new MyWinAdapter());
+		this.addWindowListener(this);
 		
-	}
+	}//end of constructor....
 	
 	private  void initializeJdbc() {
 		System.out.println("MiniProjectGUI_AllStatementsApp.initializeJdbc()");
@@ -104,7 +104,7 @@ public class MiniProjectGUI_AllStatementsApp1 extends  JFrame  implements Action
 			//register JDBC Driver
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			//estalish the connection
-			con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","manager");
+			con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","c##rana","rana123");
 			// create SimpleSatement object
 			st=con.createStatement();
 			//create PreparedStatement obj having pre-compiled SQL Query
@@ -130,14 +130,12 @@ public class MiniProjectGUI_AllStatementsApp1 extends  JFrame  implements Action
 			e.printStackTrace();
 		}
 		
-	}
+	}// end of function
 
 	public static void main(String[] args) {
 		System.out.println("MiniProjectGUI_AllStatementsApp.main(-)");
 		new MiniProjectGUI_AllStatementsApp();
-		
-
-	}
+	}//end of main method
 
 	@Override
 	public void actionPerformed(ActionEvent ae) {
@@ -209,8 +207,12 @@ public class MiniProjectGUI_AllStatementsApp1 extends  JFrame  implements Action
 		}
 	}//actionPerformed(-)
 
-  private class   MyWinAdapter extends WindowAdapter { 	
-	
+	@Override
+	public void windowOpened(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	@Override
 	public void windowClosing(WindowEvent e) {
 		System.out.println("MiniProjectGUI_AllStatementsApp.windowClosing()");
@@ -258,6 +260,35 @@ public class MiniProjectGUI_AllStatementsApp1 extends  JFrame  implements Action
 		}
 		
 	}
-  }//inner class
-  
+
+	@Override
+	public void windowClosed(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowIconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowDeiconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowActivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowDeactivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }//class
